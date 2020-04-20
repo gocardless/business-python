@@ -5,9 +5,9 @@ We really appreciate your help in uncovering any security issues and look forwar
 # Response Targets
 GoCardless will make a best effort to meet the following response targets for hackers participating in our program:
 
-Time to first response (from report submit) - 2 business days
-Time to triage (from report submit) - 2 business days
-Time to bounty (from triage) - 10 business days
+* Time to first response (from report submit) - 2 business days
+* Time to triage (from report submit) - 2 business days
+* Time to bounty (from triage) - 10 business days
 
 We’ll try to keep you informed about our progress throughout the process.
  
@@ -20,15 +20,6 @@ We’ll try to keep you informed about our progress throughout the process.
 * When duplicates occur, we only award the first report that was received (provided that it can be fully reproduced).
 * Multiple vulnerabilities caused by one underlying issue will be awarded one bounty.
 * Amounts below are the minimum and maximum bounties we will pay per bug based on severity. We aim to be fair; all reward amounts are at our discretion.
-
-# Test Plan
-Hackers can create their own accounts using their HackerOne email alias, by signing up with YOURHANDLE@wearehackerone.com (e.g. hacker123@wearehackerone.com)
-
-See more here: https://docs.hackerone.com/hackers/hacker-email-alias.html 
-
-# API Docs
-* https://developer.gocardless.com/getting-started/api/introduction/
-* https://api.gocardless.com/schema 
 
 # Scope
 All scope is listed below in the structured scope section
@@ -59,3 +50,9 @@ When reporting vulnerabilities, please consider (1) attack scenario / exploitabi
  
 # Safe Harbor
 Any activities conducted in a manner consistent with this policy will be considered authorized conduct and we will not initiate legal action against you. If legal action is initiated by a third party against you in connection with activities conducted under this policy, we will take steps to make it known that your actions were conducted in compliance with this policy.
+
+# Test Plan
+
+Where appropriate, hackers can create their own accounts using their HackerOne email alias, by signing up with YOURHANDLE@wearehackerone.com (e.g. hacker123@wearehackerone.com) to use in testing applications/services.
+
+See more here: https://docs.hackerone.com/hackers/hacker-email-alias.html 
