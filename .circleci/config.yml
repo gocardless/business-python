@@ -1,0 +1,120 @@
+version: 2
+
+references:
+  install_deps: &install_deps
+    run:
+      name: Install Python dependencies
+      command: >-
+        sudo pip install poetry==1.0.5
+        && poetry run pip install pip==20.0.2 setuptools==46.1.3
+        && poetry install --no-root
+
+  store_python_version: &store_python_version
+    run:
+      name: Create python version cache key
+      command: echo $PYTHON_VERSION > ~/project/.CIRCLECI_PYTHON_VERSION
+
+  restore_cache: &restore_cache
+    restore_cache:
+      keys:
+        # Find a cache corresponding to this specific poetry.lock checksum
+        # when this file is changed, this key will fail
+        - poetry-cache-{{ checksum ".CIRCLECI_PYTHON_VERSION" }}-{{ checksum "poetry.lock" }}
+        # If it fails, use the most recently generated cache (to speed up pip installs)
+        - poetry-cache-{{ checksum ".CIRCLECI_PYTHON_VERSION" }}-
+
+  save_cache: &save_cache
+    save_cache:
+      key: poetry-cache-{{ checksum ".CIRCLECI_PYTHON_VERSION" }}-{{ checksum "poetry.lock" }}
+      paths:
+        - /home/circleci/.cache/pypoetry/virtualenvs
+
+  test_library: &test_library
+    run:
+      name: Test
+      command: poetry run python -m pytest
+
+  test_defaults: &test_defaults
+    steps:
+      - checkout
+      - *store_python_version
+      - *restore_cache
+      - *install_deps
+      - *test_library
+      - *save_cache
+
+jobs:
+  test_python38:
+    <<: *test_defaults
+    docker:
+      - image: circleci/python:3.8
+
+  test_python37:
+    <<: *test_defaults
+    docker:
+      - image: circleci/python:3.7
+
+  build_python36:
+    docker:
+      - image: circleci/python:3.6
+    steps:
+      - checkout
+      - *store_python_version
+      - *restore_cache
+      - *install_deps
+      - *save_cache
+
+  test_python36:
+    docker:
+      - image: circleci/python:3.6
+    steps:
+      - checkout
+      - *store_python_version
+      - *restore_cache
+      - *install_deps
+      - run:
+          name: Pytest and coverage report
+          command: poetry run python -m pytest --cov=./business test --cov-report=html
+      - store_artifacts:
+          path: htmlcov
+
+  lint:
+    docker:
+      - image: circleci/python:3.6
+    steps:
+      - checkout
+      - *store_python_version
+      - *restore_cache
+      - *install_deps
+      - run:
+          name: flake8 linter
+          command: poetry run flake8 business test --statistics
+
+  typecheck:
+    docker:
+      - image: circleci/python:3.6
+    steps:
+      - checkout
+      - *store_python_version
+      - *restore_cache
+      - *install_deps
+      - run:
+          name: MyPy typechecking
+          command: poetry run mypy business
+
+workflows:
+  version: 2
+  build:
+    jobs:
+      - test_python38
+      - test_python37
+      - build_python36
+      - test_python36:
+          requires:
+            - build_python36
+      - lint:
+          requires:
+            - build_python36
+      - typecheck:
+          requires:
+            - build_python36

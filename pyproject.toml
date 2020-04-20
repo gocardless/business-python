@@ -1,0 +1,56 @@
+[tool.poetry]
+name = "business-python"
+version = "1.0.0"
+description = "Date calculations based on business calendars."
+authors = ["GoCardless <engineering@gocardless.com>"]
+readme = "README.md"
+homepage = "https://github.com/gocardless/business-python"
+repository = "https://github.com/gocardless/business-python"
+packages = [
+    { include = "business" },
+]
+include = ["business/data"]
+keywords = ["business days", "working days", "calendar", "date"]
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3.6",
+    "Programming Language :: Python :: 3.7",
+    "Programming Language :: Python :: 3.8",
+    "Topic :: Office/Business :: Scheduling",
+    "Topic :: Software Development :: Libraries :: Python Modules"
+]
+
+[tool.poetry.dependencies]
+python = "^3.6"
+importlib_metadata = { version = "^1.6.0", python = "<3.8" }
+python-dateutil = "^2.8.1"
+pyyaml = "^5.3.1"
+
+[tool.poetry.dev-dependencies]
+black = "^19.10b0"
+flake8 = "^3.7.9"
+flake8-docstrings = "^1.5.0"
+flake8-isort = "^3.0.0"
+isort = "^4.3.21"
+mypy = "^0.770"
+pytest = "^5.4.1"
+pytest-cov = "^2.8.1"
+toml = "^0.10.0"
+tox = "^3.14.6"
+
+[tool.isort]
+force_grid_wrap = 0
+include_trailing_comma = true
+line_length = 99
+multi_line_output = 3
+use_parentheses = true
+
+[tool.black]
+line-length = 99
+target-version = ['py36']
+
+[build-system]
+requires = ["poetry>=1.0", "pip>=20.0"]
+build-backend = "poetry.masonry.api"
