@@ -9,7 +9,6 @@ repository = "https://github.com/gocardless/business-python"
 packages = [
     { include = "business" },
 ]
-include = ["business/data"]
 keywords = ["business days", "working days", "calendar", "date"]
 classifiers = [
     "Development Status :: 5 - Production/Stable",

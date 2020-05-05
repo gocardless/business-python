@@ -14,6 +14,22 @@ To get business, simply:
 $ pip install business-python
 ```
 
+## Version 2.0.0 breaking changes
+
+In version 2.0.0 we have removed the bundled calendars. If you still need these they are available on [v1.0.1](https://github.com/gocardless/business-python/tree/74fe7e4068e0f16b68e7478f8b5ca1cc52f9a7d0/business/data).
+
+### Migration
+
+- Download/create calendars to a directory within your project eg: `lib/calendars`
+- Change your code to include the `load_path` for your calendars
+- Continue using `.load("my_calendar")` as usual
+
+```python
+# lib/calendars contains yml files
+Calendar.load_paths = ['lib/calendars']
+calendar = Calendar.load("my_calendar")
+```
+
 ### Getting started
 
 Get started with business by creating an instance of the calendar class, passing in a hash that specifies which days of the week are considered working days, and which days are holidays.
@@ -31,27 +47,34 @@ calendar = Calendar(
 
 `extra_working_dates` key makes the calendar to consider a weekend day as a working day.
 
-A few calendar configs are bundled with the package (see [business/data](<(business/data)>) for details). Load them by calling the `load` class method on `Calendar`.
-
-```python
-calendar = Calendar.load("weekdays")
-```
-
 If `working_days` is missing, then common default is used (mon-fri).
 If `holidays` is missing, "no holidays" assumed.
 If `extra_working_dates` is missing, then no changes in `working_days` will happen.
 
 Elements of `holidays` and `extra_working_dates` may be either strings that `Calendar.parse_date()` can understand, or YYYY-MM-DD (which is considered as a Date by Python YAML itself).
 
+#### Calendar YAML file example
+
 ```yaml
+# lib/calendars/my_calendar.yml
+working_days:
+  - Monday
+  - Sunday
 holidays:
   - 2017-01-08 # Same as January 8th, 2017
+extra_working_dates:
+  - 2020-12-26 # Will consider 26 Dec 2020 (A Saturday), a working day
 ```
 
 The `load_cache` method allows a thread safe way to avoid reloading the same calendar multiple times, and provides a performant way to dynamically load calendars for different requests.
 
+#### Using business-python
+
+Define your calendars in a folder eg: `lib/calendars` and set this directory  on `Calendar.load_paths=`
+
 ```python
-calendar = Calendar.load_cache("weekdays")
+Calendar.load_paths = ['lib/calendars']
+calendar = Calendar.load_cache("my_calendar")
 ```
 
 ### Input data types
@@ -87,16 +110,6 @@ calendar.is_business_day("Monday, 8 June 2020")
 calendar.is_business_day("Sunday, 7 June 2020")
 # => false
 ```
-
-### Custom calendars
-
-To use a calendar you've written yourself, you need to add the directory it's stored in as an additional calendar load path:
-
-```python
-Calendar.additional_load_paths = ['path/to/your/calendar/directory']
-```
-
-You can then load the calendar as normal.
 
 ### Business day arithmetic
 
@@ -151,21 +164,6 @@ input_date = Calendar.parse_date("Thursday, 12 June 2014")
 calendar.get_business_day_of_month(input_date)
 # => 9
 ```
-
-### Included Calendars
-
-We include some calendar data with this package but give no guarantees of its accuracy. The calendars that we include are:
-
-- ACH (United States)
-- Bacs
-- Bankgirot
-- BECS (Australia)
-- BECSNZ (New Zealand)
-- PAD (Canada)
-- Betalingsservice
-- Target (SEPA)
-- TargetFrance (SEPA + French bank holidays)
-
 ## License & Contributing
 
 - This is available as open source under the terms of the [MIT License](http://opensource.org/licenses/MIT).
