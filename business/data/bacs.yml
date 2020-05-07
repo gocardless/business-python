@@ -6,6 +6,22 @@ working_days:
   - friday
 
 holidays:
+  - January 3rd, 2011
+  - April 25th, 2011
+  - May 2nd, 2011
+  - May 30th, 2011
+  - August 29th, 2011
+  - December 26th, 2011
+  - December 27th, 2011
+  - January 2nd, 2012
+  - April 6th, 2012
+  - April 9th, 2012
+  - May 7th, 2012
+  - June 4th, 2012
+  - June 5th, 2012
+  - August 27th, 2012
+  - December 25th, 2012
+  - December 26th, 2012
   - January 1st, 2013
   - March 29th, 2013
   - April 1st, 2013
