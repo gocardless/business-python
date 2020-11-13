@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "business-python"
-version = "1.0.2"
+version = "1.0.3"
 description = "Date calculations based on business calendars."
 authors = ["GoCardless <engineering@gocardless.com>"]
 readme = "README.md"
@@ -24,18 +24,18 @@ classifiers = [
 
 [tool.poetry.dependencies]
 python = "^3.6"
-importlib_metadata = { version = "^1.6.0", python = "<3.8" }
+importlib_metadata = { version = ">=1.6.0,<3.0.0", python = "<3.8" }
 python-dateutil = "^2.8.1"
-pyyaml = "^5.3.1"
+pyyaml = "^5.1.2"
 
 [tool.poetry.dev-dependencies]
 black = "^19.10b0"
 flake8 = "^3.8.4"
 flake8-docstrings = "^1.5.0"
-flake8-isort = "^3.0.0"
+flake8-isort = "^4.0.0"
 isort = "^4.3.21"
-mypy = "^0.770"
-pytest = "^5.4.1"
+mypy = ">=0.770,<1.0.0"
+pytest = "^6.1.2"
 pytest-cov = "^2.8.1"
 toml = "^0.10.0"
 tox = "^3.14.6"
@@ -52,5 +52,5 @@ line-length = 99
 target-version = ['py36']
 
 [build-system]
-requires = ["poetry>=1.0", "pip>=20.0"]
-build-backend = "poetry.masonry.api"
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
