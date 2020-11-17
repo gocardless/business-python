@@ -54,3 +54,53 @@ holidays:
   - December 25th, 2020
   - December 26th, 2020
   - December 31st, 2020
+
+    # New Years Day
+  - January 1st, 2021
+    # Maunday Thursday
+  - April 1st, 2021
+    # Good Friday
+  - April 2nd, 2021
+    # Easter Monday
+  - April 5th, 2021
+    # General Prayer Day
+  - April 30th, 2021
+    # Ascension Day
+  - May 13th, 2021
+    # Bank Holiday
+  - May 14th, 2021
+    # Whit Monday
+  - May 24th, 2021
+    # Christmas Eve Day
+  - December 24th, 2021
+    # Christmas Day
+  - December 25th, 2021
+    # Second Day of Christmas
+  - December 26th, 2021
+    # New Year's Eve
+  - December 31st, 2021
+
+    # New Years Day
+  - January 1st, 2022
+    # Maunday Thursday
+  - April 14th, 2022
+    # Good Friday
+  - April 15th, 2022
+    # Easter Monday
+  - April 18th, 2022
+    # General Prayer Day
+  - May 13th, 2022
+    # Ascension Day
+  - May 26th, 2022
+    # Bank Holiday
+  - May 27th, 2022
+    # Whit Monday
+  - June 6th, 2022
+    # Christmas Eve Day
+  - December 24th, 2022
+    # Christmas Day
+  - December 25th, 2022
+    # Second Day of Christmas
+  - December 26th, 2022
+    # New Year's Eve
+  - December 31st, 2022

@@ -33,3 +33,22 @@ holidays:
   - November 11th, 2020
   - December 25th, 2020
   - December 28th, 2020
+
+    # New Year's Day
+  - January 1st, 2021
+    # Good Friday
+  - April 2nd, 2021
+    # Victoria Day
+  - May 24th, 2021
+    # Canada Day
+  - July 1st, 2021
+    # Labor Day
+  - September 6th, 2021
+    # Thanksgiving Day
+  - October 11th, 2021
+    # Remembrance Day
+  - November 11th, 2021
+    # Christmas
+  - December 25th, 2021
+    # Boxing Day
+  - December 26th, 2021

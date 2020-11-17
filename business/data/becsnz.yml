@@ -47,4 +47,25 @@ holidays:
   - December 25th, 2020
   - December 28th, 2020
 
+    # New Year's Day
+  - January 1st, 2021
+    # Day after New Year's Day falls on a Saturday, so the holiday rolls over
+  - January 4th, 2021
+    # Waitangi Day falls on a Saturday, so the holiday rolls over
+  - February 8th, 2021
+    # Good Friday
+  - April 2th, 2021
+    # Easter Monday
+  - April 5th, 2021
+    # ANZAC Day falls on a Sunday, so the holiday rolls over
+  - April 26th, 2021
+    # Queen's Birthday
+  - June 7th, 2021
+    # Labor Day
+  - October 25th, 2021
+    # Christmas Day falls on a Saturday, so the holiday rolls over
+  - December 27th, 2021
+    # Boxing daY falls on a Sunday, so the holiday rolls over
+  - December 28th, 2021
+
 
