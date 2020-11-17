@@ -38,7 +38,7 @@ mypy = "^0.770"
 pytest = "^5.4.1"
 pytest-cov = "^2.8.1"
 toml = "^0.10.0"
-tox = "^3.14.6"
+tox = "^3.20.1"
 
 [tool.isort]
 force_grid_wrap = 0
