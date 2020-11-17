@@ -50,6 +50,13 @@ references:
       - *save_cache
 
 jobs:
+  test_python39:
+    <<: *test_defaults
+    docker:
+      - image: cimg/python:3.9
+        environment:
+          POETRY_VERSION: 1.1.4
+
   test_python38:
     <<: *test_defaults
     docker:
@@ -109,6 +116,7 @@ workflows:
   version: 2
   build:
     jobs:
+      - test_python39
       - test_python38
       - test_python37
       - build_python36
