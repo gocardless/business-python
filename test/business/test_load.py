@@ -1,7 +1,6 @@
 import datetime
 import os
 import unittest
-from glob import glob
 from time import time
 
 import pytest
@@ -9,16 +8,10 @@ import pytest
 from business.calendar import Calendar
 from conftest import parse_date_noniso
 
-bundled_calendars_path = os.path.join(os.path.dirname(__file__), "../..", "business", "data")
-
 
 class TestLoad(unittest.TestCase):
     fixture_path = os.path.join(os.path.dirname(__file__), "fixtures", "data")
-    Calendar.additional_load_paths = [fixture_path]
-
-    def test_when_given_a_valid_calendar(self):
-        calendar = Calendar.load("weekdays")
-        assert isinstance(calendar, Calendar)
+    Calendar.load_paths = [fixture_path]
 
     def test_when_given_a_calendar_from_a_custom_directory(self):
         calendar = Calendar.load("ecb")
@@ -39,7 +32,7 @@ class TestLoad(unittest.TestCase):
 
 class TestLoadCache(unittest.TestCase):
     def test_when_given_a_valid_calendar(self):
-        calendar = Calendar.load_cache("weekdays")
+        calendar = Calendar.load_cache("ecb")
         assert isinstance(calendar, Calendar)
 
     def test_cache_loads_faster_second_time(self):
@@ -52,18 +45,6 @@ class TestLoadCache(unittest.TestCase):
         duration_2 = time() - start_time_2
 
         assert duration_2 < duration_1
-
-
-@pytest.mark.parametrize(
-    "calendar_file",
-    [
-        os.path.splitext(os.path.basename(path))[0]
-        for path in glob(os.path.join(bundled_calendars_path, "*.yml"))
-    ],
-)
-def test_bundled_calendars_should_load_without_issues(calendar_file):
-    calendar = Calendar.load(calendar_file)
-    assert len(calendar.working_days) >= 1
 
 
 class TestSetWorkingDays(unittest.TestCase):

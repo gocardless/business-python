@@ -38,8 +38,7 @@ class Calendar:
 
     _cache = Mutex(dict())
 
-    additional_load_paths: List[str] = []
-    bundled_calendars_path: List[str] = [os.path.join(os.path.dirname(__file__), "data")]
+    load_paths: List[str] = []
 
     DAY_NAMES = ["mon", "tue", "wed", "thu", "fri", "sat", "sun"]
     default_working_days = ["mon", "tue", "wed", "thu", "fri"]
@@ -75,7 +74,7 @@ class Calendar:
         >>> %timeit -n 100 Calendar.load('bacs')
             23.9 ms ± 228 µs per loop (mean ± std. dev. of 7 runs, 100 loops each)
         """
-        calendar_directories = cls.additional_load_paths + cls.bundled_calendars_path
+        calendar_directories = cls.load_paths
         directory_find = [
             dir
             for dir in calendar_directories
