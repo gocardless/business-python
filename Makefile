@@ -20,7 +20,7 @@ test: install lint
 
 lint: install
 	poetry run black $(PACKAGE_FOLDER) $(TEST_FOLDER)
-	poetry run isort --recursive $(PACKAGE_FOLDER) $(TEST_FOLDER)
+	poetry run isort $(PACKAGE_FOLDER) $(TEST_FOLDER)
 
 tox:
 	poetry run tox
