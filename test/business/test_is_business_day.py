@@ -1,7 +1,8 @@
 import unittest
 
-from business.calendar import Calendar
 from conftest import parse_date_noniso
+
+from business.calendar import Calendar
 
 
 # A set of examples that are supposed to work when given Date and Time

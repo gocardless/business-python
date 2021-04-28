@@ -1,8 +1,9 @@
 import unittest
 from datetime import timedelta
 
-from business.calendar import Calendar
 from conftest import parse_date_noniso
+
+from business.calendar import Calendar
 
 day_interval = timedelta(days=1)
 
