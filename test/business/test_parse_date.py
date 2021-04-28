@@ -1,9 +1,9 @@
 import datetime
 
 import pytest
+from conftest import parse_date_noniso
 
 from business.calendar import Calendar
-from conftest import parse_date_noniso
 
 
 def test_parse_date_str_noniso():

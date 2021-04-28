@@ -4,9 +4,9 @@ import unittest
 from time import time
 
 import pytest
+from conftest import parse_date_noniso
 
 from business.calendar import Calendar
-from conftest import parse_date_noniso
 
 
 class TestLoad(unittest.TestCase):
