@@ -84,12 +84,15 @@ for context_1 in scenarios_list:
 @pytest.fixture
 def calendar():
     return Calendar(
-        holidays=["Thu 2014-05-01", "Thu 2014-07-03"], extra_working_dates=["Sat 2014-11-01"],
+        holidays=["Thu 2014-05-01", "Thu 2014-07-03"],
+        extra_working_dates=["Sat 2014-11-01"],
     )
 
 
 @pytest.mark.parametrize(
-    "input_date, expected", scenarios.values(), ids=list(scenarios.keys()),
+    "input_date, expected",
+    scenarios.values(),
+    ids=list(scenarios.keys()),
 )
 def test_scenario_get_business_day_of_month(calendar, input_date, expected):
     result = calendar.get_business_day_of_month(input_date)

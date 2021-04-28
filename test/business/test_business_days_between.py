@@ -446,7 +446,9 @@ def calendar():
 
 
 @pytest.mark.parametrize(
-    "date_1, date_2, holidays, expected", scenarios.values(), ids=list(scenarios.keys()),
+    "date_1, date_2, holidays, expected",
+    scenarios.values(),
+    ids=list(scenarios.keys()),
 )
 def test_scenario_business_days_between(calendar, date_1, date_2, holidays, expected):
     if holidays:

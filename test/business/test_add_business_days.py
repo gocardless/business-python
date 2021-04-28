@@ -10,7 +10,9 @@ day_interval = timedelta(days=1)
 
 class TestAddBusinessDays(unittest.TestCase):
     def setUp(self):
-        self.calendar = Calendar(holidays=["Tuesday 1st Jan, 2013"],)
+        self.calendar = Calendar(
+            holidays=["Tuesday 1st Jan, 2013"],
+        )
         self.delta = 2
 
     def test_add_zero_days(self):
@@ -59,7 +61,9 @@ class TestAddBusinessDays(unittest.TestCase):
 
 class TestSubtractBusinessDays(unittest.TestCase):
     def setUp(self):
-        self.calendar = Calendar(holidays=["Thursday 3rd Jan, 2013"],)
+        self.calendar = Calendar(
+            holidays=["Thursday 3rd Jan, 2013"],
+        )
         self.delta = 2
 
     def test_given_a_business_day_and_a_period_that_includes_only_business_days(self):
@@ -103,7 +107,9 @@ class TestSubtractBusinessDays(unittest.TestCase):
 
 class TestNextBusinessDay(unittest.TestCase):
     def setUp(self):
-        self.calendar = Calendar(holidays=["Tuesday 1st Jan, 2013"],)
+        self.calendar = Calendar(
+            holidays=["Tuesday 1st Jan, 2013"],
+        )
 
     def test_given_a_business_day(self):
         test_date = parse_date_noniso("Wednesday 2nd Jan, 2013")
