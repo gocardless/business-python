@@ -1,3 +1,8 @@
+## 2.0.1 - April 28, 2021
+- widen range of `importlib_metadata` to include 4.x.x release
+- CircleCI: bump poetry/pip to latest
+- poetry.lock: update dependencies to latest
+
 ## 2.0.0 - March 9, 2021
 
 🚨 **Breaking changes** 🚨

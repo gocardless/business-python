@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "business-python"
-version = "2.0.0"
+version = "2.0.1"
 description = "Date calculations based on business calendars."
 authors = ["GoCardless <engineering@gocardless.com>"]
 readme = "README.md"
