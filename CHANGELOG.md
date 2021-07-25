@@ -1,3 +1,6 @@
+## 2.0.2 - July 25, 2021
+- add py.typed file to indicate to mypy that the library is fully type annotated.
+
 ## 2.0.1 - April 28, 2021
 - widen range of `importlib_metadata` to include 4.x.x release
 - CircleCI: bump poetry/pip to latest
