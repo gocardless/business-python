@@ -3,7 +3,7 @@ import datetime
 import logging
 import os
 from threading import RLock
-from typing import List, Optional, Union
+from typing import Any, Dict, Generic, List, Optional, TypeVar, Union
 
 import yaml
 from dateutil.parser import parse as dateutil_parse
@@ -12,23 +12,24 @@ logger = logging.getLogger("business")
 
 day_interval = datetime.timedelta(days=1)
 INPUT_TYPES = Union[str, datetime.date]
+T = TypeVar('T')
 
 
-class Mutex:
+class Mutex(Generic[T]):
     """Helper class for thread-safe locking."""
 
-    def __init__(self, obj):
+    def __init__(self, obj: T) -> None:
         """Initialise reentrant lock."""
         super().__init__()
         self.__obj = obj
         self.lock = RLock()
 
-    def __enter__(self):
+    def __enter__(self) -> T:
         """Acquire lock on entering."""
         self.lock.acquire()
         return self.__obj
 
-    def __exit__(self, *args, **kwargs):
+    def __exit__(self, *args: Any, **kwargs: Any) -> None:
         """Release lock on exit."""
         self.lock.release()
 
@@ -36,7 +37,7 @@ class Mutex:
 class Calendar:
     """Calendar class."""
 
-    _cache = Mutex(dict())
+    _cache: Mutex[Dict[str, "Calendar"]] = Mutex(dict())
 
     load_paths: List[str] = []
 
@@ -68,7 +69,7 @@ class Calendar:
                 raise ValueError(f"Extra working dates cannot be on working days: {d}")
 
     @classmethod
-    def load(cls, calendar_str: str):
+    def load(cls, calendar_str: str) -> "Calendar":
         """Load a scheme calendar YAML file.
 
         >>> %timeit -n 100 Calendar.load('bacs')
@@ -105,7 +106,7 @@ class Calendar:
         )
 
     @classmethod
-    def load_cache(cls, calendar_str: str):
+    def load_cache(cls, calendar_str: str) -> "Calendar":
         """Load a scheme calendar YAML file with cache.
 
         >>> %timeit Calendar.load_cache('bacs')
