@@ -1,3 +1,6 @@
+## 2.0.3 - August 2, 2021
+- stricter type checking
+
 ## 2.0.2 - July 25, 2021
 - add py.typed file to indicate to mypy that the library is fully type annotated.
 

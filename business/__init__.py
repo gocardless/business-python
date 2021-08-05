@@ -1,7 +1,8 @@
 """Init."""
+# mypy: ignore-errors
 
 
-def get_version():
+def get_version() -> str:
     """Get package version."""
     try:
         from importlib.metadata import version
