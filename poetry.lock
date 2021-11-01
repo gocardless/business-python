@@ -130,19 +130,19 @@ pydocstyle = ">=2.1"
 
 [[package]]
 name = "flake8-isort"
-version = "4.0.0"
+version = "4.1.1"
 description = "flake8 plugin that integrates isort ."
 category = "dev"
 optional = false
 python-versions = "*"
 
 [package.dependencies]
-flake8 = ">=3.2.1,<4"
+flake8 = ">=3.2.1,<5"
 isort = ">=4.3.5,<6"
 testfixtures = ">=6.8.0,<7"
 
 [package.extras]
-test = ["pytest (>=4.0.2,<6)", "toml"]
+test = ["pytest-cov"]
 
 [[package]]
 name = "importlib-metadata"
@@ -483,7 +483,7 @@ testing = ["pytest (>=4.6)", "pytest-checkdocs (>=1.2.3)", "pytest-flake8", "pyt
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.6"
-content-hash = "8def0bbc113db24928221cd181a87a53162d58c2db6d5598bd92679b5d0b34ac"
+content-hash = "f732d8d11d29bef8556900e8d8f8d822dabd58b828b9f03dc9e8aab90489c672"
 
 [metadata.files]
 appdirs = [
@@ -584,8 +584,8 @@ flake8-docstrings = [
     {file = "flake8_docstrings-1.6.0-py2.py3-none-any.whl", hash = "sha256:99cac583d6c7e32dd28bbfbef120a7c0d1b6dde4adb5a9fd441c4227a6534bde"},
 ]
 flake8-isort = [
-    {file = "flake8-isort-4.0.0.tar.gz", hash = "sha256:2b91300f4f1926b396c2c90185844eb1a3d5ec39ea6138832d119da0a208f4d9"},
-    {file = "flake8_isort-4.0.0-py2.py3-none-any.whl", hash = "sha256:729cd6ef9ba3659512dee337687c05d79c78e1215fdf921ed67e5fe46cce2f3c"},
+    {file = "flake8-isort-4.1.1.tar.gz", hash = "sha256:d814304ab70e6e58859bc5c3e221e2e6e71c958e7005239202fee19c24f82717"},
+    {file = "flake8_isort-4.1.1-py3-none-any.whl", hash = "sha256:c4e8b6dcb7be9b71a02e6e5d4196cefcef0f3447be51e82730fb336fff164949"},
 ]
 importlib-metadata = [
     {file = "importlib_metadata-4.6.1-py3-none-any.whl", hash = "sha256:9f55f560e116f8643ecf2922d9cd3e1c7e8d52e683178fecd9d08f6aa357e11e"},
