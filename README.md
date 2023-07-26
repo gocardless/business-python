@@ -14,6 +14,10 @@ To get business, simply:
 $ pip install business-python
 ```
 
+## Version 2.1.0 breaking changes
+
+In version 2.1.0 we have dropped support for End-of-Life Python version 3.6 and 3.7. Last release supporting these versions is [v2.0.3](https://github.com/gocardless/business-python/tree/v2.0.3).
+
 ## Version 2.0.0 breaking changes
 
 In version 2.0.0 we have removed the bundled calendars. If you still need these they are available on [v1.0.1](https://github.com/gocardless/business-python/tree/74fe7e4068e0f16b68e7478f8b5ca1cc52f9a7d0/business/data).
