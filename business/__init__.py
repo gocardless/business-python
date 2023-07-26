@@ -4,10 +4,8 @@
 
 def get_version() -> str:
     """Get package version."""
-    try:
-        from importlib.metadata import version
-    except ImportError:
-        from importlib_metadata import version  # type: ignore
+    from importlib.metadata import version
+
     return version("business")
 
 

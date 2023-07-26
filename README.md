@@ -2,7 +2,7 @@
 
 [![circleci-badge](https://circleci.com/gh/gocardless/business-python.svg?style=shield)](https://app.circleci.com/pipelines/github/gocardless/business-python) [![pypi-badge](https://badge.fury.io/py/business-python.svg)](https://badge.fury.io/py/business-python)
 
-Date calculations based on business calendars. (Python 3.6+)
+Date calculations based on business calendars. (Python 3.8+)
 
 Python implementation of https://github.com/gocardless/business
 

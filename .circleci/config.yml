@@ -1,11 +1,11 @@
 version: 2
 
 references:
-  python36: &python36
+  python38: &python38
     docker:
-      - image: cimg/python:3.6
+      - image: cimg/python:3.8
         environment:
-          POETRY_VERSION: 1.1.6
+          POETRY_VERSION: 1.5.1
 
   install_deps: &install_deps
     run:
@@ -50,29 +50,29 @@ references:
       - *save_cache
 
 jobs:
+  test_python311:
+    <<: *test_defaults
+    docker:
+      - image: cimg/python:3.11
+        environment:
+          POETRY_VERSION: 1.5.1
+
+  test_python310:
+    <<: *test_defaults
+    docker:
+      - image: cimg/python:3.10
+        environment:
+          POETRY_VERSION: 1.5.1
+
   test_python39:
     <<: *test_defaults
     docker:
       - image: cimg/python:3.9
         environment:
-          POETRY_VERSION: 1.1.6
+          POETRY_VERSION: 1.5.1
 
-  test_python38:
-    <<: *test_defaults
-    docker:
-      - image: cimg/python:3.8
-        environment:
-          POETRY_VERSION: 1.1.6
-
-  test_python37:
-    <<: *test_defaults
-    docker:
-      - image: cimg/python:3.7
-        environment:
-          POETRY_VERSION: 1.1.6
-
-  build_python36:
-    <<: *python36
+  build_python38:
+    <<: *python38
     steps:
       - checkout
       - *store_python_version
@@ -80,8 +80,8 @@ jobs:
       - *install_deps
       - *save_cache
 
-  test_python36:
-    <<: *python36
+  test_python38:
+    <<: *python38
     steps:
       - checkout
       - *store_python_version
@@ -93,7 +93,7 @@ jobs:
           path: htmlcov
 
   lint:
-    <<: *python36
+    <<: *python38
     steps:
       - checkout
       - *store_python_version
@@ -103,7 +103,7 @@ jobs:
           command: poetry run flake8 business test --statistics
 
   typecheck:
-    <<: *python36
+    <<: *python38
     steps:
       - checkout
       - *store_python_version
@@ -116,16 +116,16 @@ workflows:
   version: 2
   build:
     jobs:
+      - test_python311
+      - test_python310
       - test_python39
       - test_python38
-      - test_python37
-      - build_python36
-      - test_python36:
+      - test_python38:
           requires:
-            - build_python36
+            - build_python38
       - lint:
           requires:
-            - build_python36
+            - build_python38
       - typecheck:
           requires:
-            - build_python36
+            - build_python38
