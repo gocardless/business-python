@@ -1,3 +1,7 @@
+## 2.1.0 - July 26, 2023
+- dropped support for EOL versions of Python 3.6 and 3.7
+- updated project's dependencies
+
 ## 2.0.3 - August 2, 2021
 - stricter type checking
 

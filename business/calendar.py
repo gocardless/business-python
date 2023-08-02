@@ -12,7 +12,7 @@ logger = logging.getLogger("business")
 
 day_interval = datetime.timedelta(days=1)
 INPUT_TYPES = Union[str, datetime.date]
-T = TypeVar('T')
+T = TypeVar("T")
 
 
 class Mutex(Generic[T]):
