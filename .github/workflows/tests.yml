@@ -1,0 +1,44 @@
+name: Tests
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+
+jobs:
+  test:
+    name: Python ${{ matrix.python-version }}
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        python-version: ["3.8", "3.9", "3.10", "3.11"]
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - name: Set up pipx and poetry
+        run: |-
+          pip3 install --upgrade pip pipx
+          python3 -m pip install --user $(whoami)
+          python3 -m pipx ensurepath
+          pipx install poetry==1.5.1
+
+      - name: Install dependencies
+        run: poetry install
+
+      - name: Run pytest
+        run: poetry run python -m pytest
+
+      - name: Lint
+        run: poetry run flake8 business test --statistics
+
+      - name: MyPy typechecking
+        run: poetry run mypy business
