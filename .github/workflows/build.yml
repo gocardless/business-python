@@ -1,0 +1,163 @@
+name: test
+on:
+  pull_request:
+    types: [opened, reopened, synchronize]
+  push:
+    branches:
+      - master
+
+jobs:
+  test_python39:
+    runs-on: ubuntu-latest
+    container:
+      image: python:3.9
+      env:
+        POETRY_VERSION: 1.1.6
+    steps:
+    - uses: actions/checkout@v3.5.0
+    - name: Create python version cache key
+      run: echo $PYTHON_VERSION > ~/project/.CIRCLECI_PYTHON_VERSION
+    - name: restore_cache
+      uses: actions/cache@v3.3.1
+      with:
+        key: poetry-cache-{{ checksum ".CIRCLECI_PYTHON_VERSION" }}-{{ checksum "poetry.lock" }}
+        restore-keys: |-
+          poetry-cache-{{ checksum ".CIRCLECI_PYTHON_VERSION" }}-{{ checksum "poetry.lock" }}
+          poetry-cache-{{ checksum ".CIRCLECI_PYTHON_VERSION" }}-
+        path: "/home/circleci/.cache/pypoetry/virtualenvs"
+    - name: Install Python dependencies
+      run: pip install -U pip==21.1 setuptools==56.0.0 wheel==0.36.2 && curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python && poetry install --no-root
+    - name: Test
+      run: poetry run python -m pytest
+  test_python38:
+    runs-on: ubuntu-latest
+    container:
+      image: python:3.8
+      env:
+        POETRY_VERSION: 1.1.6
+    steps:
+    - uses: actions/checkout@v3.5.0
+    - name: Create python version cache key
+      run: echo $PYTHON_VERSION > ~/project/.CIRCLECI_PYTHON_VERSION
+    - name: restore_cache
+      uses: actions/cache@v3.3.1
+      with:
+        key: poetry-cache-{{ checksum ".CIRCLECI_PYTHON_VERSION" }}-{{ checksum "poetry.lock" }}
+        restore-keys: |-
+          poetry-cache-{{ checksum ".CIRCLECI_PYTHON_VERSION" }}-{{ checksum "poetry.lock" }}
+          poetry-cache-{{ checksum ".CIRCLECI_PYTHON_VERSION" }}-
+        path: "/home/circleci/.cache/pypoetry/virtualenvs"
+    - name: Install Python dependencies
+      run: pip install -U pip==21.1 setuptools==56.0.0 wheel==0.36.2 && curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python && poetry install --no-root
+    - name: Test
+      run: poetry run python -m pytest
+  test_python37:
+    runs-on: ubuntu-latest
+    container:
+      image: python:3.7
+      env:
+        POETRY_VERSION: 1.1.6
+    steps:
+    - uses: actions/checkout@v3.5.0
+    - name: Create python version cache key
+      run: echo $PYTHON_VERSION > ~/project/.CIRCLECI_PYTHON_VERSION
+    - name: restore_cache
+      uses: actions/cache@v3.3.1
+      with:
+        key: poetry-cache-{{ checksum ".CIRCLECI_PYTHON_VERSION" }}-{{ checksum "poetry.lock" }}
+        restore-keys: |-
+          poetry-cache-{{ checksum ".CIRCLECI_PYTHON_VERSION" }}-{{ checksum "poetry.lock" }}
+          poetry-cache-{{ checksum ".CIRCLECI_PYTHON_VERSION" }}-
+        path: "/home/circleci/.cache/pypoetry/virtualenvs"
+    - name: Install Python dependencies
+      run: pip install -U pip==21.1 setuptools==56.0.0 wheel==0.36.2 && curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python && poetry install --no-root
+    - name: Test
+      run: poetry run python -m pytest
+  build_python36:
+    runs-on: ubuntu-latest
+    container:
+      image: python:3.6
+      env:
+        POETRY_VERSION: 1.1.6
+    steps:
+    - uses: actions/checkout@v3.5.0
+    - name: Create python version cache key
+      run: echo $PYTHON_VERSION > ~/project/.CIRCLECI_PYTHON_VERSION
+    - name: restore_cache
+      uses: actions/cache@v3.3.1
+      with:
+        key: poetry-cache-{{ checksum ".CIRCLECI_PYTHON_VERSION" }}-{{ checksum "poetry.lock" }}
+        restore-keys: |-
+          poetry-cache-{{ checksum ".CIRCLECI_PYTHON_VERSION" }}-{{ checksum "poetry.lock" }}
+          poetry-cache-{{ checksum ".CIRCLECI_PYTHON_VERSION" }}-
+        path: "/home/circleci/.cache/pypoetry/virtualenvs"
+    - name: Install Python dependencies
+      run: pip install -U pip==21.1 setuptools==56.0.0 wheel==0.36.2 && curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python && poetry install --no-root
+  test_python36:
+    runs-on: ubuntu-latest
+    container:
+      image: python:3.6
+      env:
+        POETRY_VERSION: 1.1.6
+    needs:
+    - build_python36
+    steps:
+    - uses: actions/checkout@v3.5.0
+    - name: Create python version cache key
+      run: echo $PYTHON_VERSION > ~/project/.CIRCLECI_PYTHON_VERSION
+    - name: restore_cache
+      uses: actions/cache@v3.3.1
+      with:
+        key: poetry-cache-{{ checksum ".CIRCLECI_PYTHON_VERSION" }}-{{ checksum "poetry.lock" }}
+        restore-keys: |-
+          poetry-cache-{{ checksum ".CIRCLECI_PYTHON_VERSION" }}-{{ checksum "poetry.lock" }}
+          poetry-cache-{{ checksum ".CIRCLECI_PYTHON_VERSION" }}-
+    - name: Pytest and coverage report
+      run: poetry run python -m pytest --cov=./business test --cov-report=html
+    - uses: actions/upload-artifact@v3.1.1
+      with:
+        path: htmlcov
+  lint:
+    runs-on: ubuntu-latest
+    container:
+      image: python:3.6
+      env:
+        POETRY_VERSION: 1.1.6
+    needs:
+    - build_python36
+    steps:
+    - uses: actions/checkout@v3.5.0
+    - name: Create python version cache key
+      run: echo $PYTHON_VERSION > ~/project/.CIRCLECI_PYTHON_VERSION
+    - name: restore_cache
+      uses: actions/cache@v3.3.1
+      with:
+        key: poetry-cache-{{ checksum ".CIRCLECI_PYTHON_VERSION" }}-{{ checksum "poetry.lock" }}
+        restore-keys: |-
+          poetry-cache-{{ checksum ".CIRCLECI_PYTHON_VERSION" }}-{{ checksum "poetry.lock" }}
+          poetry-cache-{{ checksum ".CIRCLECI_PYTHON_VERSION" }}-
+        path: "/home/circleci/.cache/pypoetry/virtualenvs"
+    - name: flake8 linter
+      run: poetry run flake8 business test --statistics
+  typecheck:
+    runs-on: ubuntu-latest
+    container:
+      image: python:3.6
+      env:
+        POETRY_VERSION: 1.1.6
+    needs:
+    - build_python36
+    steps:
+    - uses: actions/checkout@v3.5.0
+    - name: Create python version cache key
+      run: echo $PYTHON_VERSION > ~/project/.CIRCLECI_PYTHON_VERSION
+    - name: restore_cache
+      uses: actions/cache@v3.3.1
+      with:
+        key: poetry-cache-{{ checksum ".CIRCLECI_PYTHON_VERSION" }}-{{ checksum "poetry.lock" }}
+        restore-keys: |-
+          poetry-cache-{{ checksum ".CIRCLECI_PYTHON_VERSION" }}-{{ checksum "poetry.lock" }}
+          poetry-cache-{{ checksum ".CIRCLECI_PYTHON_VERSION" }}-
+        path: "/home/circleci/.cache/pypoetry/virtualenvs"
+    - name: MyPy typechecking
+      run: poetry run mypy business
