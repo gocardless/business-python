@@ -74,7 +74,7 @@ The `load_cache` method allows a thread safe way to avoid reloading the same cal
 
 #### Using business-python
 
-Define your calendars in a folder eg: `lib/calendars` and set this directory  on `Calendar.load_paths=`
+Define your calendars in a folder eg: `lib/calendars` and set this directory on `Calendar.load_paths=`
 
 ```python
 Calendar.load_paths = ['lib/calendars']
@@ -168,6 +168,7 @@ input_date = Calendar.parse_date("Thursday, 12 June 2014")
 calendar.get_business_day_of_month(input_date)
 # => 9
 ```
+
 ## License & Contributing
 
 - This is available as open source under the terms of the [MIT License](http://opensource.org/licenses/MIT).
