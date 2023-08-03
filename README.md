@@ -2,7 +2,7 @@
 
 [![circleci-badge](https://circleci.com/gh/gocardless/business-python.svg?style=shield)](https://app.circleci.com/pipelines/github/gocardless/business-python) [![pypi-badge](https://badge.fury.io/py/business-python.svg)](https://badge.fury.io/py/business-python)
 
-Date calculations based on business calendars. (Python 3.6+)
+Date calculations based on business calendars. (Python 3.8+)
 
 Python implementation of https://github.com/gocardless/business
 
@@ -13,6 +13,10 @@ To get business, simply:
 ```bash
 $ pip install business-python
 ```
+
+## Version 2.1.0 breaking changes
+
+In version 2.1.0 we have dropped support for End-of-Life Python version 3.6 and 3.7. Last release supporting these versions is [v2.0.3](https://github.com/gocardless/business-python/tree/v2.0.3).
 
 ## Version 2.0.0 breaking changes
 
@@ -70,7 +74,7 @@ The `load_cache` method allows a thread safe way to avoid reloading the same cal
 
 #### Using business-python
 
-Define your calendars in a folder eg: `lib/calendars` and set this directory  on `Calendar.load_paths=`
+Define your calendars in a folder eg: `lib/calendars` and set this directory on `Calendar.load_paths=`
 
 ```python
 Calendar.load_paths = ['lib/calendars']
@@ -164,6 +168,7 @@ input_date = Calendar.parse_date("Thursday, 12 June 2014")
 calendar.get_business_day_of_month(input_date)
 # => 9
 ```
+
 ## License & Contributing
 
 - This is available as open source under the terms of the [MIT License](http://opensource.org/licenses/MIT).
